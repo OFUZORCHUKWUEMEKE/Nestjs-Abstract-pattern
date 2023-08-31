@@ -1,0 +1,16 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - "5434:5432"
+    volumes:
+      - /var/lib/postgresql/data  
+
+  nestbackend:
+   build: .   
+   depends_on:
+    - postgres   
